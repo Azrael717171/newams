@@ -17,6 +17,7 @@ export class OverrideComponent {
         time: '',
         reason: '',
     };
+overrideForm: any;
 
     constructor(private http: HttpClient) {}
 
