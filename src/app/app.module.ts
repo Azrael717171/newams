@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import { OverrideComponent } from './components/override/override.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -17,6 +19,7 @@ import { OverrideComponent } from './components/override/override.component';
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
+    FormsModule
     
   ],
   providers: [],
