@@ -1,3 +1,7 @@
+<link 
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" 
+  rel="stylesheet">
+
 <div class="container mt-5">
   <h2 class="text-center text-primary fw-bold">Time Override</h2>
 
@@ -24,23 +28,24 @@
         <td>{{ override.nature }}</td>
         <td>{{ override.department }}</td>
         <td>{{ override.createdBy }}</td>
-        <td>{{ override.createdAt | date }}</td>
-        <td class="text-center">
+        <td>{{ override.createdAt | date }}
+        </td>
+        <td class="text-center"> 
           <div class="d-flex justify-content-center gap-2">
             <button 
               class="btn btn-primary btn-sm" 
               (click)="editOverride(override._id)" 
               title="Edit this override">
-              <i class="fa fa-edit"></i>
+              <i class="bi bi-pencil-fill"></i> <!-- Bootstrap edit icon -->
             </button>
             <button 
               class="btn btn-danger btn-sm" 
               (click)="deleteOverride(override._id)" 
               title="Delete this override">
-              <i class="fa fa-trash"></i>
+              <i class="bi bi-trash-fill"></i> <!-- Bootstrap trash icon -->
             </button>
           </div>
-        </td>
+        </td>        
       </tr>
     </tbody>
   </table>
