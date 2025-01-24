@@ -7,7 +7,13 @@ import { Override } from 'src/app/services/time-override.service';
   styleUrls: ['./override.component.css']
 })
 export class TimeOverrideComponent implements OnInit {
-  overrides: Override[] = [];  // Define the correct type here
+  overrides: Override[] = [];
+  
+  employees = [
+    { id: 1, name: 'Employee 1' },
+    { id: 2, name: 'Employee 2' },
+  ];
+  // Define the correct type here
 
   newOverride = {
     branch: '',

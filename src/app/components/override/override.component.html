@@ -70,8 +70,13 @@
             </div>
             <div class="mb-3">
               <label for="employee" class="form-label">Employee</label>
-              <input type="text" class="form-control" [(ngModel)]="newOverride.employee" name="employee">
+              <select class="form-control" [(ngModel)]="newOverride.employee" name="employee">
+                <option *ngFor="let employee of employees" [value]="employee.name">
+                  {{ employee.name }}
+                </option>
+              </select>
             </div>
+            
             <div class="mb-3">
               <label for="nature" class="form-label">Nature</label>
               <input type="text" class="form-control" [(ngModel)]="newOverride.nature" name="nature">
