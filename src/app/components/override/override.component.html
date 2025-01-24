@@ -10,7 +10,7 @@
   </div>
 
   <table class="table table-bordered table-striped">
-    <thead class="table-dark">
+    <thead class="table-gray">
       <tr>
         <th>Name</th>
         <th>Date</th>
@@ -24,7 +24,7 @@
     <tbody>
       <tr *ngFor="let override of overrides">
         <td>{{ override.employee }}</td>
-        <td>{{ override.date }}</td>
+        <td>{{ override.date | date: 'mediumDate'}} {{ override.time}}</td>
         <td>{{ override.nature }}</td>
         <td>{{ override.department }}</td>
         <td>{{ override.createdBy }}</td>

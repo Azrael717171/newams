@@ -8,6 +8,8 @@ import { Override } from 'src/app/services/time-override.service';
 })
 export class TimeOverrideComponent implements OnInit {
   overrides: Override[] = [];
+
+  time = new Date();
   
   employees = [
     { id: 1, name: 'Employee 1' },
