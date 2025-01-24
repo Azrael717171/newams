@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TimeOverrideService } from './time-override.service';
+import { OverrideService } from './time-override.service';
 
 describe('TimeOverrideService', () => {
-  let service: TimeOverrideService;
+  let service: OverrideService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TimeOverrideService);
+    service = TestBed.inject(OverrideService);
   });
 
   it('should be created', () => {

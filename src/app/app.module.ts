@@ -5,21 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
-import { OverrideComponent } from './components/override/override.component';
+import { TimeOverrideComponent } from './components/override/override.component';
 import { FormsModule } from '@angular/forms';
+import { OverrideService } from './services/time-override.service';
+
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,OverrideComponent
+    AppComponent,TimeOverrideComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
     
   ],
   providers: [],

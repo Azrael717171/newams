@@ -1,24 +1,37 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+export interface Override {
+  _id: string;
+  employee: string;
+  date: string;
+  nature: string;
+  department: string;
+  createdBy: string;
+  createdAt: Date;
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class TimeOverrideService {
-  private apiUrl = 'http://localhost:3000/overrides';
+export class OverrideService {
+  private apiUrl = 'http://localhost:5000/overrides';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getOverrides(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  // Get all overrides
+  getOverrides(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
 
-  addOverride(overrideData: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, overrideData);
+  // Add a new override
+  addOverride(override: any): Observable<any> {
+    return this.http.post(this.apiUrl, override);
   }
 
-  deleteOverride(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  // Delete an override
+  deleteOverride(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

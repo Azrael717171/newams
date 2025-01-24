@@ -1,100 +1,95 @@
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-
 <div class="container mt-5">
-    <h2 class="text-center text-primary fw-bold">Time Override</h2>
-  
-    <div class="my-4 d-flex justify-content-end">
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Override</button>
-    </div>
-  
-    <table class="table table-bordered table-striped">
-      <thead class="table-dark">
-        <tr>
-          <th>Name</th>
-          <th>Date</th>
-          <th>Nature</th>
-          <th>Purpose</th>
-          <th>Override By</th>
-          <th>Override Date</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let override of overrides">
-          <td>{{ override.employee }}</td>
-          <td>{{ override.date }}</td>
-          <td>{{ override.nature }}</td>
-          <td>{{ override.department }}</td>
-          <td>{{ override.createdBy }}</td>
-          <td>{{ override.createdAt | date }}</td>
-          <td class="text-center">
-            <div class="d-flex justify-content-center gap-2">
-              <button 
-                class="btn btn-primary btn-sm" 
-                (click)="deleteOverride(override._id)" 
-                title="Edit this override">
-                <i class="fa fa-edit"></i>
-              </button>
-              <button 
-                class="btn btn-danger btn-sm" 
-                (click)="deleteOverride(override._id)" 
-                title="Delete this override">
-                <i class="fa fa-trash"></i>
-              </button>
+  <h2 class="text-center text-primary fw-bold">Time Override</h2>
+
+  <div class="my-4 d-flex justify-content-end">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Override</button>
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Nature</th>
+        <th>Purpose</th>
+        <th>Override By</th>
+        <th>Override Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let override of overrides">
+        <td>{{ override.employee }}</td>
+        <td>{{ override.date }}</td>
+        <td>{{ override.nature }}</td>
+        <td>{{ override.department }}</td>
+        <td>{{ override.createdBy }}</td>
+        <td>{{ override.createdAt | date }}</td>
+        <td class="text-center">
+          <div class="d-flex justify-content-center gap-2">
+            <button 
+              class="btn btn-primary btn-sm" 
+              (click)="editOverride(override._id)" 
+              title="Edit this override">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button 
+              class="btn btn-danger btn-sm" 
+              (click)="deleteOverride(override._id)" 
+              title="Delete this override">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Add Modal -->
+  <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Time Override</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="branch" class="form-label">Branch</label>
+              <input type="text" class="form-control" [(ngModel)]="newOverride.branch" name="branch">
             </div>
-          </td>
-          
-        </tr>
-      </tbody>
-    </table>
-  
-    <!-- Add Modal -->
-    <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Add Time Override</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="branch" class="form-label">Branch</label>
-                <input type="text" class="form-control" [(ngModel)]="newOverride.branch">
-              </div>
-              <div class="mb-3">
-                <label for="department" class="form-label">Department</label>
-                <input type="text" class="form-control" [(ngModel)]="newOverride.department">
-              </div>
-              <div class="mb-3">
-                <label for="employee" class="form-label">Employee</label>
-                <input type="text" class="form-control" [(ngModel)]="newOverride.employee">
-              </div>
-              <div class="mb-3">
-                <label for="nature" class="form-label">Nature</label>
-                <input type="text" class="form-control" [(ngModel)]="newOverride.nature">
-              </div>
-              <div class="mb-3">
-                <label for="date" class="form-label">Date</label>
-                <input type="date" class="form-control" [(ngModel)]="newOverride.date">
-              </div>
-              <div class="mb-3">
-                <label for="time" class="form-label">Time</label>
-                <input type="time" class="form-control" [(ngModel)]="newOverride.time">
-              </div>
-              <div class="mb-3">
-                <label for="reason" class="form-label">Reason</label>
-                <textarea class="form-control" rows="3" [(ngModel)]="newOverride.reason"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="addOverride()" data-bs-dismiss="modal">Submit</button>
-          </div>
+            <div class="mb-3">
+              <label for="department" class="form-label">Department</label>
+              <input type="text" class="form-control" [(ngModel)]="newOverride.department" name="department">
+            </div>
+            <div class="mb-3">
+              <label for="employee" class="form-label">Employee</label>
+              <input type="text" class="form-control" [(ngModel)]="newOverride.employee" name="employee">
+            </div>
+            <div class="mb-3">
+              <label for="nature" class="form-label">Nature</label>
+              <input type="text" class="form-control" [(ngModel)]="newOverride.nature" name="nature">
+            </div>
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input type="date" class="form-control" [(ngModel)]="newOverride.date" name="date">
+            </div>
+            <div class="mb-3">
+              <label for="time" class="form-label">Time</label>
+              <input type="time" class="form-control" [(ngModel)]="newOverride.time" name="time">
+            </div>
+            <div class="mb-3">
+              <label for="reason" class="form-label">Reason</label>
+              <textarea class="form-control" rows="3" [(ngModel)]="newOverride.reason" name="reason"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" (click)="addOverride()" data-bs-dismiss="modal">Submit</button>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

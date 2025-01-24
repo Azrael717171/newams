@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OverrideComponent } from './override.component';
+import { TimeOverrideComponent } from './override.component';
 
 describe('OverrideComponent', () => {
-  let component: OverrideComponent;
-  let fixture: ComponentFixture<OverrideComponent>;
+  let component: TimeOverrideComponent;
+  let fixture: ComponentFixture<TimeOverrideComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [OverrideComponent]
+      declarations: [TimeOverrideComponent]
     });
-    fixture = TestBed.createComponent(OverrideComponent);
+    fixture = TestBed.createComponent(TimeOverrideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
