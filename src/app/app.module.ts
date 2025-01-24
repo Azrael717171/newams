@@ -10,8 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { OverrideService } from './services/time-override.service';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,TimeOverrideComponent,
