@@ -9,15 +9,12 @@ import { Override } from 'src/app/services/time-override.service';
 export class TimeOverrideComponent implements OnInit {
   overrides: Override[] = [];
 
-  time = new Date();
-  
   employees = [
     { id: 1, name: 'Employee 1' },
-    { id: 2, name: 'Employee 2' },
+    { id: 2, name: 'Employee 2' }
   ];
-  // Define the correct type here
 
-  newOverride = {
+  newOverride: any = {
     branch: '',
     department: '',
     employee: '',
@@ -27,33 +24,59 @@ export class TimeOverrideComponent implements OnInit {
     reason: ''
   };
 
+  isEdit: boolean = false;
+
   constructor(private overrideService: OverrideService) {}
 
   ngOnInit() {
-    this.loadOverrides();  // Load overrides when the component initializes
+    this.loadOverrides();
   }
 
   loadOverrides() {
     this.overrideService.getOverrides().subscribe((data: Override[]) => {
-      this.overrides = data;  // TypeScript now knows the correct structure of the array
+      this.overrides = data;
     });
   }
 
   addOverride() {
-    this.overrideService.addOverride(this.newOverride).subscribe(() => {
-      this.loadOverrides();  // Reload overrides after adding a new one
-      this.newOverride = { branch: '', department: '', employee: '', nature: '', date: '', time: '', reason: '' }; // Reset form
-    });
+    if (this.isEdit) {
+      this.overrideService.updateOverride(this.newOverride).subscribe(() => {
+        this.loadOverrides();
+        this.resetForm();
+      });
+    } else {
+      this.overrideService.addOverride(this.newOverride).subscribe(() => {
+        this.loadOverrides();
+        this.resetForm();
+      });
+    }
+  }
+
+  editOverride(id: string) {
+    this.isEdit = true;
+    const override = this.overrides.find(o => o._id === id);
+    if (override) {
+      this.newOverride = { ...override };
+    }
   }
 
   deleteOverride(id: string) {
     this.overrideService.deleteOverride(id).subscribe(() => {
-      this.loadOverrides();  // Reload overrides after deletion
+      this.loadOverrides();
     });
   }
 
-  // The editOverride method can be implemented here if needed
-  editOverride(id: string) {
-    // Implement the edit functionality here
+  resetForm() {
+    this.newOverride = {
+      branch: '',
+      department: '',
+      employee: '',
+      nature: '',
+      date: '',
+      time: '',
+      reason: ''
+    };
+    this.isEdit = false;
   }
+
 }

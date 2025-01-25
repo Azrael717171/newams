@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Override {
-time: any;
+  time: any;
   _id: string;
   employee: string;
   date: string;
@@ -29,6 +29,11 @@ export class OverrideService {
   // Add a new override
   addOverride(override: any): Observable<any> {
     return this.http.post(this.apiUrl, override);
+  }
+
+  // Update an override
+  updateOverride(override: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${override._id}`, override);
   }
 
   // Delete an override
