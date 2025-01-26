@@ -75,14 +75,15 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form #overrideForm="ngForm">
             <div class="mb-3">
               <label for="branch" class="form-label">Branch</label>
               <input 
                 type="text" 
                 class="form-control" 
                 [(ngModel)]="newOverride.branch" 
-                name="branch">
+                name="branch" 
+                required>
             </div>
             <div class="mb-3">
               <label for="department" class="form-label">Department</label>
@@ -90,14 +91,16 @@
                 type="text" 
                 class="form-control" 
                 [(ngModel)]="newOverride.department" 
-                name="department">
+                name="department" 
+                required>
             </div>
             <div class="mb-3">
               <label for="employee" class="form-label">Employee</label>
               <select 
                 class="form-control" 
                 [(ngModel)]="newOverride.employee" 
-                name="employee">
+                name="employee" 
+                required>
                 <option *ngFor="let employee of employees" [value]="employee.name">
                   {{ employee.name }}
                 </option>
@@ -109,7 +112,8 @@
                 type="text" 
                 class="form-control" 
                 [(ngModel)]="newOverride.nature" 
-                name="nature">
+                name="nature" 
+                required>
             </div>
             <div class="mb-3">
               <label for="date" class="form-label">Date</label>
@@ -117,7 +121,8 @@
                 type="date" 
                 class="form-control" 
                 [(ngModel)]="newOverride.date" 
-                name="date">
+                name="date" 
+                required>
             </div>
             <div class="mb-3">
               <label for="time" class="form-label">Time</label>
@@ -125,7 +130,8 @@
                 type="time" 
                 class="form-control" 
                 [(ngModel)]="newOverride.time" 
-                name="time">
+                name="time" 
+                required>
             </div>
             <div class="mb-3">
               <label for="reason" class="form-label">Reason</label>
@@ -133,7 +139,8 @@
                 class="form-control" 
                 rows="3" 
                 [(ngModel)]="newOverride.reason" 
-                name="reason"></textarea>
+                name="reason" 
+                required></textarea>
             </div>
           </form>
         </div>
@@ -142,6 +149,7 @@
           <button 
             type="button" 
             class="btn btn-primary" 
+            [disabled]="!overrideForm.form.valid" 
             (click)="addOverride()" 
             data-bs-dismiss="modal">
             {{ isEdit ? 'Save Changes' : 'Submit' }}
@@ -150,3 +158,4 @@
       </div>
     </div>
   </div>
+  
