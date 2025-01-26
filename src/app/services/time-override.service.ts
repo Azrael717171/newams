@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Override {
+reason: any;
   time: any;
   _id: string;
   employee: string;
