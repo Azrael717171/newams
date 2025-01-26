@@ -8,6 +8,8 @@ import { Override } from 'src/app/services/time-override.service';
 })
 export class TimeOverrideComponent implements OnInit {
   overrides: Override[] = [];
+  filteredOverrides: Override[] = [];
+  searchTerm: string = '';
 
   employees = [
     { id: 1, name: 'Employee 1' },
@@ -35,6 +37,7 @@ export class TimeOverrideComponent implements OnInit {
   loadOverrides() {
     this.overrideService.getOverrides().subscribe((data: Override[]) => {
       this.overrides = data;
+      this.filteredOverrides = data;
     });
   }
 
@@ -77,6 +80,17 @@ export class TimeOverrideComponent implements OnInit {
       reason: ''
     };
     this.isEdit = false;
+  }
+
+  filterOverrides() {
+    const searchTermLower = this.searchTerm.toLowerCase();
+    this.filteredOverrides = this.overrides.filter(override => 
+      override.employee.toLowerCase().includes(searchTermLower) ||
+      override.nature.toLowerCase().includes(searchTermLower) ||
+      override.reason.toLowerCase().includes(searchTermLower) ||
+      override.createdBy.toLowerCase().includes(searchTermLower) ||
+      override.date.toLowerCase().includes(searchTermLower)
+    );
   }
 
 }

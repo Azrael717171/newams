@@ -14,6 +14,14 @@
       (click)="resetForm()">Add Override</button>
   </div>
 
+  <h4>Filter</h4>
+  <input 
+    type="text" 
+    class="form-control mb-3" 
+    placeholder="Search..." 
+    [(ngModel)]="searchTerm" 
+    (input)="filterOverrides()" />
+
   <table class="table table-bordered table-striped">
     <thead class="table-gray">
       <tr>
@@ -27,7 +35,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let override of overrides">
+      <tr *ngFor="let override of filteredOverrides">
         <td>{{ override.employee }}</td>
         <td>{{ override.date | date: 'mediumDate'}} {{ override.time }}</td>
         <td>{{ override.nature }}</td>
@@ -55,6 +63,8 @@
       </tr>
     </tbody>
   </table>
+</div>
+
 
   <!-- Modal -->
   <div class="modal fade" id="overrideModal" tabindex="-1" aria-hidden="true">
@@ -140,4 +150,3 @@
       </div>
     </div>
   </div>
-</div>
